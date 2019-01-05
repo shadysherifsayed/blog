@@ -1,0 +1,66 @@
+$navbarBackground: #383A3F;
+$secondary: #7A8192;
+
+#main-navbar {
+    background: $navbarBackground;
+    box-shadow: none;
+    border-bottom: 2px solid $secondary;
+    padding: 1rem 2rem;
+
+    .navbar-brand {
+        &:hover, &:focus {
+            outline: none;
+
+        }
+        img {
+            height: auto;
+            width: 150px;
+        }
+    }
+
+    .nav-item {
+        &:not(:last-child) {
+            border-right: 1px solid $secondary;
+        }
+        min-width: 60px;
+        text-align: center;
+        .nav-link {
+            color: #ddd;
+            &:focus, &:hover {
+                outline: none;
+            }
+        }
+
+        svg {
+            width: 25px;
+            height: 20px;
+            fill: $secondary;
+        }
+        &.notifications {
+            border: none;
+        }
+    }
+
+
+    #user-profile {
+        padding: 0;
+        display: flex;
+        align-items: center;
+        span {
+            margin: 0 10px;
+        }
+        .avatar {
+            height: 40px;
+            width: 40px;
+            background: #7A8192;
+            background-size: cover;
+            background-position: center;
+            border-radius: 50%;
+            border: 2px solid #ddd;
+            display: inline-block
+        }
+        
+    }
+
+
+}

@@ -25,61 +25,6 @@
 })(jQuery);
 /** Serialize Form as JSON */
 
-
-/** Animate CSS */
-(function ($) {
-    $.fn.extend({
-        animateCss: function (animationName, callback) {
-            var animationEnd = (function (el) {
-                var animations = {
-                    animation: 'animationend',
-                    OAnimation: 'oAnimationEnd',
-                    MozAnimation: 'mozAnimationEnd',
-                    WebkitAnimation: 'webkitAnimationEnd',
-                };
-
-                for (var t in animations) {
-                    if (el.style[t] !== undefined) {
-                        return animations[t];
-                    }
-                }
-            })(document.createElement('div'));
-
-            this.addClass('animated ' + animationName).one(animationEnd, function () {
-                $(this).removeClass('animated ' + animationName);
-
-                if (typeof callback === 'function') callback();
-            });
-
-            return this;
-        },
-    });
-})(jQuery);
-/** Animate CSS */
-
-const convertImgToSvg = img => {
-    // Perf tip: Cache the image as jQuery object so that we don't use the selector muliple times.
-    var $img = jQuery(img);
-    // Get all the attributes.
-    var attributes = $img.prop("attributes");
-    // Get the image's URL.
-    var imgURL = $img.attr("src");
-    // Fire an AJAX GET request to the URL.
-    $.get(imgURL, function (data) {
-        // The data you get includes the document type definition, which we don't need.
-        // We are only interested in the <svg> tag inside that.
-        var $svg = $(data).find('svg');
-        // Remove any invalid XML tags as per http://validator.w3.org
-        $svg = $svg.removeAttr('xmlns:a');
-        // Loop through original image's attributes and apply on SVG
-        $.each(attributes, function () {
-            $svg.attr(img.name, img.value);
-        });
-        // Replace image with new SVG
-        $img.replaceWith($svg);
-    });
-}
-
 function CSRFToken() {
     $.ajaxSetup({
         headers: {
@@ -87,6 +32,8 @@ function CSRFToken() {
         }
     });
 }
+
+$('input, textarea').attr('autocomplete', 'off');
 
 function displayErrors(errors) {
 
@@ -140,7 +87,6 @@ $('form.ajax').submit(function (e) {
     submitForm($(this));
 });
 
-$('input, textarea').attr('autocomplete', 'off');
 
 $(document).on('keyup', 'input, textarea', function () {
 
@@ -162,11 +108,7 @@ $(document).on('change', 'select, input[type=radio], input[type=checkbox]', func
     $(`#error-${name}`).remove();
 });
 
-let currentForm;
-
 const submitForm = function (form, successCallback = defaultSuccess, errorCallback = defaultError) {
-
-    currentForm = form;
 
     let hiddenMethod = form.find('input[name="_method"]').val();
 
@@ -193,8 +135,6 @@ const submitFileForm = function (form, successCallback = defaultSuccess, errorCa
 
     let formEl = $(form);
 
-    currentForm = formEl;
-
     let hiddenMethod = formEl.find('input[name="_method"]').val();
 
     let method = (hiddenMethod === undefined) ? formEl.attr('method') : hiddenMethod;
@@ -202,8 +142,6 @@ const submitFileForm = function (form, successCallback = defaultSuccess, errorCa
     let data = new FormData(form);
 
     let action = formEl.attr('action');
-
-    loadingIcon(formEl);
 
     if (method.toUpperCase() !== 'GET') {
         CSRFToken();
@@ -226,104 +164,17 @@ const submitFileForm = function (form, successCallback = defaultSuccess, errorCa
 }
 
 const defaultSuccess = function (response) {
-
     if (response.redirect) {
-
         window.location = response.redirect;
-
-    } else {
-
-        toastr.success('Data Updated Successfully');
     }
 }
 
-const defaultError = function (response, status, err, form) {
-
+const defaultError = function (response) {
     if (response.responseJSON) {
-
         let errors = response.responseJSON.errors;
-
         if (errors) {
             displayErrors(errors);
         }
-
-    }
-}
-
-const exists = function (selector) {
-    return $(selector).length > 0;
-}
-
-
-$(document).on('click', '.delete', function () {
-
-    let action = $(this).attr('action');
-
-    let method = 'DELETE';
-
-    let btn = $(this);
-
-    swal({
-        title: 'Are you sure?',
-        text: "Once deleted, you will not be able to recover it!",
-        type: "warning",
-        customClass: 'swal-delete',
-        background: "#222",
-        showCancelButton: true,
-        confirmButtonText: 'Delete',
-        cancelButtonText: 'Keep',
-        confirmButtonColor: '#CF000F',
-        cancelButtonColor: '#f3b715',
-        focusCancel: true
-    }).then(result => {
-
-        if (result.value) {
-
-            CSRFToken();
-
-            $.ajax({
-
-                type: method,
-                url: action,
-                success: function (response) {
-
-                    if (response.status) {
-
-                        if (btn.attr('target')) {
-
-                            $(btn.attr('target')).remove();
-
-                        } else {
-
-                            btn.parents('tr').remove();
-                        }
-
-                        if (btn.parents('table')) {
-
-                            btn.parents('table').DataTable()
-                        }
-                    }
-                }
-            });
-        }
-    });
-});
-
-const loadingIcon = function (form) {
-
-    /* if (exists('#loading-icon')) return;
-
-    let submitButton = form.find('.btn-submit');
-
-    let loading = `<i class="ml-2 fas fa-circle-notch fa-spin" id="loading-icon"></i>`;
-
-    submitButton.append(loading); */
-}
-
-const showFormData = function (formData) {
-
-    for (var pair of formData.entries()) {
-        console.log(pair[0] + ', ' + pair[1]);
     }
 }
 

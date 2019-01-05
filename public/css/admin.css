@@ -1,0 +1,86 @@
+.admin {
+  width: 90%;
+  margin: 1rem auto;
+}
+
+.admin .box {
+  background: transparent;
+  -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+          box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+  padding: 1rem 2rem;
+  margin: 1rem auto;
+}
+
+.admin input:focus,
+.admin textarea:focus {
+  border-color: #000;
+}
+
+.admin label {
+  display: block;
+  font-weight: bold;
+}
+
+.admin table tr:first-child td {
+  border: none;
+}
+
+@media screen and (min-width: 920px) {
+  .admin table td.actions {
+    min-width: 150px;
+  }
+}
+
+.admin table td.actions .btn.icon {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  margin: 0 5px;
+  padding: 0;
+  background: transparent !important;
+}
+
+.admin table td.actions .btn.icon.show svg {
+  fill: #38c172;
+}
+
+.admin table td.actions .btn.icon.edit svg {
+  fill: #3490dc;
+}
+
+.admin table td.actions .btn.icon.delete svg {
+  fill: #e3342f;
+}
+
+.admin table td.actions .btn.icon svg {
+  width: 25px;
+  height: 25px;
+}
+
+.admin table.posts .categories {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.admin table.posts .categories a {
+  cursor: pointer;
+  background: transparent;
+  border-radius: 1rem;
+  border: 1px solid #666C79;
+  border-left: 5px solid #666C79;
+  border-right: 5px solid #666C79;
+  color: #222;
+  display: inline-block;
+  padding: 5px 20px;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+  text-decoration: none;
+  margin: 10px;
+}
+

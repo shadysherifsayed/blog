@@ -1,0 +1,361 @@
+@import '../variables';
+
+.main {
+    width: 98%;
+    display: grid;
+    grid-template-columns: 300px auto;
+    grid-gap: 1rem;
+    margin: 2rem auto;
+
+    @media screen and (max-width: $md) {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        align-self: start;
+
+        #add-category {
+            display: flex;
+            border: 1px solid #ddd;
+
+            input {
+                background: transparent;
+                width: 100%;
+                flex: 1;
+                border: 0;
+                color: #fff;
+
+                &::placeholder {
+                    color: #aaa;
+                }
+
+            }
+
+            margin: 1rem 0;
+
+            .btn.add {
+                align-items: center;
+                padding: 0;
+                margin-right: 0.8rem;
+
+                svg {
+                    width: 25px;
+                    height: 25px;
+                    fill: #ddd;
+                    transition: 0.5s all;
+                }
+
+                &:hover svg {
+                    fill: lighten($gold, 20);
+                }
+            }
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            background: $darkGrey;
+
+            li {
+                padding: 0.7rem;
+                position: relative;
+                border-bottom: 1px solid $bodyBg;
+                display: grid;
+                grid-template-columns: auto 80px;
+                align-items: center;
+
+                &:before {
+                    position: absolute;
+                    content: '';
+                    height: 0%;
+                    width: 4px;
+                    top: 0;
+                    left: -2px;
+                    background: $gold;
+                    transition: 0.5s all;
+                }
+
+                &.active,
+                &:hover {
+                    &:before {
+                        height: 100%;
+                    }
+                }
+
+                a {
+                    color: #ddd;
+                    text-decoration: none;
+                    font-size: 1.1rem;
+                    display: block;
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    .content {
+
+        #new-post {
+            background: $darkGrey;
+            color: #ddd;
+            margin: 1rem 0;
+
+            svg {
+                fill: #ddd;
+                width: 22px;
+                height: 22px;
+            }
+        }
+
+        .no-posts {
+            background: $darkGrey;
+            padding: 1rem;
+            text-align: center;
+            color: #ddd;
+        }
+
+        .post {
+            background: $darkGrey;
+            margin-bottom: 1.5rem;
+
+            .post-info {
+                padding: 1rem;
+
+                .title {
+                    color: #fff;
+
+                    a {
+                        color: #fff;
+                        text-decoration: none;
+                        transition: 0.5 all;
+
+                        &:hover {
+                            color: $gold;
+                        }
+                    }
+                }
+
+                .categories {
+                    display: flex;
+                    flex-wrap: wrap;
+                    margin: 1rem 0;
+
+                    a {
+                        background: $bodyBg;
+                        border-radius: 1rem;
+                        border-left: 5px solid #f3b715;
+                        color: #fff;
+                        display: inline-block;
+                        padding: 5px 20px;
+                        transition: 0.5s all;
+                        text-decoration: none;
+                        margin: 5px;
+
+                        &:hover {
+                            background: $gold;
+                            border-left-color: $bodyBg;
+                        }
+                    }
+                }
+
+                .description {
+                    color: #ddd;
+                    width: 90%;
+                    line-height: 1.8;
+                }
+
+                p {
+                    border-top: 1px solid $bodyBg;
+                    padding: 1rem 0;
+                    color: #ddd;
+                }
+            }
+
+            .post-meta {
+                border-top: 3px solid $bodyBg;
+                display: grid;
+                grid-template-columns: 1fr 2fr;
+                padding: 1rem;
+                align-items: center;
+                position: relative;
+
+                * {
+                    color: #ddd;
+                }
+
+                &:before {
+                    position: absolute;
+                    content: '';
+                    height: 50%;
+                    width: 4px;
+                    top: 25%;
+                    left: -2px;
+                    background: $gold;
+                    transition: 0.5s all;
+                }
+
+            }
+        }
+
+        form {
+            background: $darkGrey;
+            padding: 1rem;
+
+            label {
+                color: #ddd;
+                font-size: 1rem;
+            }
+
+            input,
+            textarea {
+                background: transparent;
+                border: 1px solid #ddd;
+                color: #fff;
+
+                &::placeholder {
+                    color: #aaa;
+                }
+            }
+
+            .tail-select {
+                display: block;
+                width: 100%;
+
+                * {
+                    color: #fff;
+                }
+                .select-label {
+                    background: transparent;
+                    border: 1px solid #ddd;
+                    border-radius: 0;
+                    box-shadow: none;
+                }
+
+                &.active {
+                    .select-label {
+                        &:after {
+                            background-color: transparent;
+                            border-color: transparent;
+                        }
+                    }
+                }
+            }
+
+            button {
+                background: transparent;
+                border: 1px solid #ddd;
+                border-radius: 3rem;
+                margin: 2rem auto 0;
+                display: block;
+                width: 150px;
+
+                span {
+                    color: #ddd;
+                }
+
+                svg {
+                    fill: #ddd;
+                    width: 22px;
+                    height: 22px;
+                    margin: 0 0.5rem;
+                }
+            }
+        }
+    }
+
+    .actions {
+        justify-self: end;
+        display: flex;
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 0;
+            margin: 0 0.3rem;
+
+            svg {
+                width: 25px;
+                height: 25px;
+                fill: #ddd;
+                transition: 0.5s all;
+            }
+
+            &.delete {
+                &:hover svg {
+                    fill: lighten($red, 10);
+                }
+            }
+
+            &.edit {
+                &:hover svg {
+                    fill: $blue;
+                }
+            }
+        }
+    }
+}
+
+.swal-overlay {
+    background-color: rgba(#000, 0.8);
+
+    .swal-modal {
+        background: $bodyBg;
+        border-radius: 1rem;
+
+        .swal-title {
+            color: $red;
+        }
+
+        .swal-text {
+            color: #ddd;
+        }
+
+        .swal-content__input {
+            background: transparent;
+            border: 1px solid $blue;
+            border-radius: 3rem;
+            color: #fff;
+
+            &::placeholder {
+                color: #aaa;
+            }
+        }
+
+        .swal-footer {
+            text-align: center;
+
+            button {
+                min-width: 150px;
+                background: transparent;
+                color: #ddd;
+                border-radius: 3rem;
+                transition: 0.5s all;
+            }
+
+            .swal-button--cancel {
+                border: 1px solid $green;
+
+                &:hover {
+                    background: $green;
+                }
+            }
+
+            .swal-button--danger {
+                border: 1px solid $red;
+
+                &:hover {
+                    background: $red;
+                }
+            }
+
+            .swal-button--confirm {
+                border: 1px solid $blue;
+
+                &:hover {
+                    background: $blue;
+                }
+            }
+        }
+    }
+}

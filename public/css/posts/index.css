@@ -1,0 +1,416 @@
+/*!
+ *
+ * Color Me SASS v1.0
+ * Built and Designed by Richard Bray
+ *
+ */
+
+/*!
+ *
+ * Color Me SASS v1.0
+ * Built and Designed by Richard Bray
+ *
+ */
+
+.main {
+  width: 98%;
+  display: grid;
+  grid-template-columns: 300px auto;
+  grid-gap: 1rem;
+  margin: 2rem auto;
+}
+
+@media screen and (max-width: 768px) {
+  .main {
+    grid-template-columns: 1fr;
+  }
+}
+
+.main .sidebar {
+  -ms-flex-item-align: start;
+      align-self: start;
+}
+
+.main .sidebar #add-category {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border: 1px solid #ddd;
+  margin: 1rem 0;
+}
+
+.main .sidebar #add-category input {
+  background: transparent;
+  width: 100%;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  border: 0;
+  color: #fff;
+}
+
+.main .sidebar #add-category input::-webkit-input-placeholder {
+  color: #aaa;
+}
+
+.main .sidebar #add-category input::-ms-input-placeholder {
+  color: #aaa;
+}
+
+.main .sidebar #add-category input::placeholder {
+  color: #aaa;
+}
+
+.main .sidebar #add-category .btn.add {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0;
+  margin-right: 0.8rem;
+}
+
+.main .sidebar #add-category .btn.add svg {
+  width: 25px;
+  height: 25px;
+  fill: #ddd;
+  -webkit-transition: 0.5s all;
+  transition: 0.5s all;
+}
+
+.main .sidebar #add-category .btn.add:hover svg {
+  fill: #ffd45b;
+}
+
+.main .sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background: #40434A;
+}
+
+.main .sidebar ul li {
+  padding: 0.7rem;
+  position: relative;
+  border-bottom: 1px solid #383A3F;
+  display: grid;
+  grid-template-columns: auto 80px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.main .sidebar ul li:before {
+  position: absolute;
+  content: '';
+  height: 0%;
+  width: 4px;
+  top: 0;
+  left: -2px;
+  background: #F4B400;
+  -webkit-transition: 0.5s all;
+  transition: 0.5s all;
+}
+
+.main .sidebar ul li.active:before,
+.main .sidebar ul li:hover:before {
+  height: 100%;
+}
+
+.main .sidebar ul li a {
+  color: #ddd;
+  text-decoration: none;
+  font-size: 1.1rem;
+  display: block;
+  width: 100%;
+}
+
+.main .content #new-post {
+  background: #40434A;
+  color: #ddd;
+  margin: 1rem 0;
+}
+
+.main .content #new-post svg {
+  fill: #ddd;
+  width: 22px;
+  height: 22px;
+}
+
+.main .content .no-posts {
+  background: #40434A;
+  padding: 1rem;
+  text-align: center;
+  color: #ddd;
+}
+
+.main .content .post {
+  background: #40434A;
+  margin-bottom: 1.5rem;
+}
+
+.main .content .post .post-info {
+  padding: 1rem;
+}
+
+.main .content .post .post-info .title {
+  color: #fff;
+}
+
+.main .content .post .post-info .title a {
+  color: #fff;
+  text-decoration: none;
+  -webkit-transition: 0.5 all;
+  transition: 0.5 all;
+}
+
+.main .content .post .post-info .title a:hover {
+  color: #F4B400;
+}
+
+.main .content .post .post-info .categories {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin: 1rem 0;
+}
+
+.main .content .post .post-info .categories a {
+  background: #383A3F;
+  border-radius: 1rem;
+  border-left: 5px solid #f3b715;
+  color: #fff;
+  display: inline-block;
+  padding: 5px 20px;
+  -webkit-transition: 0.5s all;
+  transition: 0.5s all;
+  text-decoration: none;
+  margin: 5px;
+}
+
+.main .content .post .post-info .categories a:hover {
+  background: #F4B400;
+  border-left-color: #383A3F;
+}
+
+.main .content .post .post-info .description {
+  color: #ddd;
+  width: 90%;
+  line-height: 1.8;
+}
+
+.main .content .post .post-info p {
+  border-top: 1px solid #383A3F;
+  padding: 1rem 0;
+  color: #ddd;
+}
+
+.main .content .post .post-meta {
+  border-top: 3px solid #383A3F;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  padding: 1rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+}
+
+.main .content .post .post-meta * {
+  color: #ddd;
+}
+
+.main .content .post .post-meta:before {
+  position: absolute;
+  content: '';
+  height: 50%;
+  width: 4px;
+  top: 25%;
+  left: -2px;
+  background: #F4B400;
+  -webkit-transition: 0.5s all;
+  transition: 0.5s all;
+}
+
+.main .content form {
+  background: #40434A;
+  padding: 1rem;
+}
+
+.main .content form label {
+  color: #ddd;
+  font-size: 1rem;
+}
+
+.main .content form input,
+.main .content form textarea {
+  background: transparent;
+  border: 1px solid #ddd;
+  color: #fff;
+}
+
+.main .content form input::-webkit-input-placeholder,
+.main .content form textarea::-webkit-input-placeholder {
+  color: #aaa;
+}
+
+.main .content form input::-ms-input-placeholder,
+.main .content form textarea::-ms-input-placeholder {
+  color: #aaa;
+}
+
+.main .content form input::placeholder,
+.main .content form textarea::placeholder {
+  color: #aaa;
+}
+
+.main .content form .tail-select {
+  display: block;
+  width: 100%;
+}
+
+.main .content form .tail-select * {
+  color: #fff;
+}
+
+.main .content form .tail-select .select-label {
+  background: transparent;
+  border: 1px solid #ddd;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.main .content form .tail-select.active .select-label:after {
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.main .content form button {
+  background: transparent;
+  border: 1px solid #ddd;
+  border-radius: 3rem;
+  margin: 2rem auto 0;
+  display: block;
+  width: 150px;
+}
+
+.main .content form button span {
+  color: #ddd;
+}
+
+.main .content form button svg {
+  fill: #ddd;
+  width: 22px;
+  height: 22px;
+  margin: 0 0.5rem;
+}
+
+.main .actions {
+  justify-self: end;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.main .actions .btn {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0;
+  margin: 0 0.3rem;
+}
+
+.main .actions .btn svg {
+  width: 25px;
+  height: 25px;
+  fill: #ddd;
+  -webkit-transition: 0.5s all;
+  transition: 0.5s all;
+}
+
+.main .actions .btn.delete:hover svg {
+  fill: #e9605c;
+}
+
+.main .actions .btn.edit:hover svg {
+  fill: #4285F4;
+}
+
+.swal-overlay {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.swal-overlay .swal-modal {
+  background: #383A3F;
+  border-radius: 1rem;
+}
+
+.swal-overlay .swal-modal .swal-title {
+  color: #e3342f;
+}
+
+.swal-overlay .swal-modal .swal-text {
+  color: #ddd;
+}
+
+.swal-overlay .swal-modal .swal-content__input {
+  background: transparent;
+  border: 1px solid #4285F4;
+  border-radius: 3rem;
+  color: #fff;
+}
+
+.swal-overlay .swal-modal .swal-content__input::-webkit-input-placeholder {
+  color: #aaa;
+}
+
+.swal-overlay .swal-modal .swal-content__input::-ms-input-placeholder {
+  color: #aaa;
+}
+
+.swal-overlay .swal-modal .swal-content__input::placeholder {
+  color: #aaa;
+}
+
+.swal-overlay .swal-modal .swal-footer {
+  text-align: center;
+}
+
+.swal-overlay .swal-modal .swal-footer button {
+  min-width: 150px;
+  background: transparent;
+  color: #ddd;
+  border-radius: 3rem;
+  -webkit-transition: 0.5s all;
+  transition: 0.5s all;
+}
+
+.swal-overlay .swal-modal .swal-footer .swal-button--cancel {
+  border: 1px solid #38c172;
+}
+
+.swal-overlay .swal-modal .swal-footer .swal-button--cancel:hover {
+  background: #38c172;
+}
+
+.swal-overlay .swal-modal .swal-footer .swal-button--danger {
+  border: 1px solid #e3342f;
+}
+
+.swal-overlay .swal-modal .swal-footer .swal-button--danger:hover {
+  background: #e3342f;
+}
+
+.swal-overlay .swal-modal .swal-footer .swal-button--confirm {
+  border: 1px solid #4285F4;
+}
+
+.swal-overlay .swal-modal .swal-footer .swal-button--confirm:hover {
+  background: #4285F4;
+}
+

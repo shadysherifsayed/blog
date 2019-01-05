@@ -1,9 +1,63 @@
-
 // Fonts
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+@import url('https://fonts.googleapis.com/css?family=Cairo|Titillium+Web|Imprima');
 
 // Variables
-@import "variables";
+@import 'variables';
 
 // Bootstrap
-@import "~bootstrap-sass/assets/stylesheets/bootstrap";
+@import '~bootstrap/scss/bootstrap';
+
+@import '~pretty-checkbox/src/pretty-checkbox.scss';
+
+@import '~animate.css/animate.min.css';
+
+@import '~typicons.font/src/font/typicons.css';
+
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+
+@import '~@fortawesome/fontawesome-free/scss/solid';
+
+@import '~@fortawesome/fontawesome-free/scss/regular';
+
+@import '~@fortawesome/fontawesome-free/scss/brands';
+
+@import '~hover.css/scss/hover';
+
+@import 'navbar';
+
+body {
+    background: $bodyBg;
+}
+
+small.feedback {
+    font-weight: bold;
+    display: block;
+}
+
+.form-control,
+.btn,
+.custom-select {
+    border-radius: 0px;
+    &:focus,
+    &:hover {
+        outline: none;
+        box-shadow: none;
+    }
+}
+
+
+*:not(i) {
+    font-family: 'Titillium Web',
+        sans-serif !important;
+}
+
+
+
+img.icon,
+img.svg {
+    width: 32px;
+}
+
+img.svg {
+    display: none;
+}

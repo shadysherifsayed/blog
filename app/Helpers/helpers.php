@@ -9,14 +9,6 @@ if (!function_exists('api')) {
     }
 }
 
-if (!function_exists('getImageIcon')) {
-
-    function getImageIcon($path, $ext = 'png')
-    {
-        return asset("/images/icons/$path.$ext");
-    }
-}
-
 if (!function_exists('icon')) {
 
     function icon($path, $ext = 'png')

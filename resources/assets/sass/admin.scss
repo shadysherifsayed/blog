@@ -1,0 +1,88 @@
+.admin {
+    width: 90%;
+    margin: 1rem auto;
+
+    .box {
+        background: transparent;
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+        padding: 1rem 2rem;
+        margin: 1rem auto;
+    }
+
+    input,
+    textarea {
+        &:focus {
+            border-color: #000;
+        }
+    }
+
+    label {
+        display: block;
+        font-weight: bold;
+    }
+
+    table {
+
+        tr {
+            &:first-child {
+                td {
+                    border: none;
+                }
+            }
+
+        }
+
+        td.actions {
+            @media screen and (min-width: 920px) {
+                min-width: 150px;
+            }
+            .btn.icon {
+                display: inline-flex;
+                align-items: flex-start;
+                margin: 0 5px;
+                padding: 0;
+
+                &.show svg {
+                    fill: #38c172;
+                }
+
+                &.edit svg {
+                    fill: #3490dc;
+                }
+
+                &.delete svg {
+                    fill: #e3342f;
+                }
+
+                background: transparent !important;
+
+                svg {
+                    width: 25px;
+                    height: 25px;
+                }
+            }
+        }
+    }
+
+    table.posts {
+        .categories {
+            display: flex;
+            flex-wrap: wrap;
+
+            a {
+                cursor: pointer;
+                background: transparent;
+                border-radius: 1rem;
+                border: 1px solid #666C79;
+                border-left: 5px solid #666C79;
+                border-right: 5px solid #666C79;
+                color: #222;
+                display: inline-block;
+                padding: 5px 20px;
+                transition: all 0.4s;
+                text-decoration: none;
+                margin: 10px;
+            }
+        }
+    }
+}

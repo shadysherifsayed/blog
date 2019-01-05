@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\View;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +14,18 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        
+        View::share('categories', \App\Category::all());
+
+        if(auth()->guard('admin')->check()) {
+            $authUser = auth()->guard('admin')->user();
+        } elseif(auth()->check()) {
+            $authUser = auth()->user();
+        } else {
+            $authUser = null;
+        }
+        View::share('authUser', $authUser);
+
     }
 
     /**
