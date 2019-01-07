@@ -1,11 +1,19 @@
 @import '../variables';
 
+.note-popover {
+    display: none;
+}
+
 .main {
     width: 98%;
     display: grid;
-    grid-template-columns: 300px auto;
+    grid-template-columns: 350px auto;
     grid-gap: 1rem;
     margin: 2rem auto;
+
+    * {
+        word-break: break-word;
+    }
 
     @media screen and (max-width: $md) {
         grid-template-columns: 1fr;
@@ -17,6 +25,16 @@
         #add-category {
             display: flex;
             border: 1px solid #ddd;
+
+            i {
+                font-size: 1.3rem;
+                color: #ddd;
+                transition: 0.5s all;
+
+                &:hover {
+                    color: $gold;
+                }
+            }
 
             input {
                 background: transparent;
@@ -43,6 +61,7 @@
                     height: 25px;
                     fill: #ddd;
                     transition: 0.5s all;
+
                 }
 
                 &:hover svg {
@@ -58,12 +77,13 @@
             background: $darkGrey;
 
             li {
-                padding: 0.7rem;
+                padding: 0 0.7rem;
                 position: relative;
                 border-bottom: 1px solid $bodyBg;
                 display: grid;
-                grid-template-columns: auto 80px;
+                grid-template-columns: auto 40px 80px;
                 align-items: center;
+                min-height: 50px;
 
                 &:before {
                     position: absolute;
@@ -81,6 +101,18 @@
                     &:before {
                         height: 100%;
                     }
+                }
+
+                span {
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 10px;
+                    background: $bodyBg;
+                    color: #fff;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 0.8rem;
                 }
 
                 a {
@@ -165,10 +197,25 @@
                     line-height: 1.8;
                 }
 
-                p {
+                .content {
                     border-top: 1px solid $bodyBg;
-                    padding: 1rem 0;
+                    padding-top: 1rem;
                     color: #ddd;
+
+                    * {
+                        color: #ddd;
+                    }
+
+                    img {
+                        width: unset;
+                        max-width: 90% !important;
+                    }
+
+                    iframe {
+                        @media screen and (max-width: $md) {
+                            width: 90% !important;
+                        }
+                    }
                 }
             }
 
@@ -225,11 +272,38 @@
                 * {
                     color: #fff;
                 }
+
                 .select-label {
                     background: transparent;
                     border: 1px solid #ddd;
                     border-radius: 0;
                     box-shadow: none;
+
+                    &:before,
+                    &:after {
+                        content: unset;
+                    }
+                }
+
+                .select-dropdown {
+                    background: $darkGrey;
+                    z-index: 1000;
+                    margin-top: 5px;
+
+                    &:after,
+                    &:before {
+                        content: unset;
+                    }
+
+                    .dropdown-search input {
+                        color: #ddd;
+                    }
+
+                    .dropdown-option:hover {
+                        &:hover {
+                            color: $darkGrey;
+                        }
+                    }
                 }
 
                 &.active {
@@ -242,7 +316,79 @@
                 }
             }
 
-            button {
+            .note-editor {
+                border-color: #ddd;
+
+                .note-toolbar {
+                    button {
+                        color: #fff;
+                    }
+
+                    .dropdown-menu {
+                        background: $darkGrey;
+                    }
+
+                    .dropdown-style {
+                        width: 175px;
+                    }
+
+                    .dropdown-style,
+                    .note-fontsize {
+
+                        li {
+                            border-bottom: 1px solid #ddd;
+                            padding: 0.5rem 1rem;
+                            ;
+
+                            a,
+                            pre {
+                                color: #ddd;
+                                text-decoration: none;
+                            }
+
+                        }
+                    }
+                }
+
+                .modal {
+                    * {
+                        color: #222 !important;
+                    }
+
+                    .close {
+                        margin: 0;
+                        padding: 0;
+                    }
+
+                    label {
+                        display: block;
+                    }
+                }
+
+                .note-editing-area {
+                    border-top: 1px solid #ddd;
+
+                    .note-placeholder {
+                        color: #ddd;
+                    }
+
+                    .note-editable {
+                        background: transparent;
+                        color: #fff;
+
+                        * {
+                            color: #fff;
+                        }
+
+                    }
+                }
+
+                .note-statusbar {
+                    background: transparent;
+                }
+            }
+
+            button[type="submit"] {
                 background: transparent;
                 border: 1px solid #ddd;
                 border-radius: 3rem;
@@ -254,11 +400,9 @@
                     color: #ddd;
                 }
 
-                svg {
-                    fill: #ddd;
-                    width: 22px;
-                    height: 22px;
-                    margin: 0 0.5rem;
+                i {
+                    color: #ddd;
+                    font-size: 22px;
                 }
             }
         }
@@ -274,22 +418,21 @@
             padding: 0;
             margin: 0 0.3rem;
 
-            svg {
-                width: 25px;
-                height: 25px;
-                fill: #ddd;
+            i {
+                font-size: 1.5rem;
+                color: #ddd;
                 transition: 0.5s all;
             }
 
             &.delete {
-                &:hover svg {
-                    fill: lighten($red, 10);
+                &:hover i {
+                    color: lighten($red, 10);
                 }
             }
 
             &.edit {
-                &:hover svg {
-                    fill: $blue;
+                &:hover i {
+                    color: $blue;
                 }
             }
         }
@@ -302,6 +445,12 @@
     .swal-modal {
         background: $bodyBg;
         border-radius: 1rem;
+
+        &.info {
+            .swal-title {
+                color: $blue !important;
+            }
+        }
 
         .swal-title {
             color: $red;
@@ -341,19 +490,20 @@
                 }
             }
 
-            .swal-button--danger {
-                border: 1px solid $red;
-
-                &:hover {
-                    background: $red;
-                }
-            }
 
             .swal-button--confirm {
                 border: 1px solid $blue;
 
                 &:hover {
                     background: $blue;
+                }
+            }
+
+            .swal-button--danger {
+                border: 1px solid $red;
+
+                &:hover {
+                    background: $red;
                 }
             }
         }

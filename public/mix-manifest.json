@@ -2,11 +2,7 @@
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
     "/css/auth.css": "/css/auth.css",
-    "/css/admin.css": "/css/admin.css",
     "/css/posts/index.css": "/css/posts/index.css",
-    "/css/posts/show.css": "/css/posts/show.css",
-    "/css/posts/form.css": "/css/posts/form.css",
     "/js/posts/index.js": "/js/posts/index.js",
-    "/js/posts/show.js": "/js/posts/show.js",
     "/js/posts/form.js": "/js/posts/form.js"
 }

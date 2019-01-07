@@ -1,9 +1,9 @@
 <aside class="sidebar">
     @if(auth()->guard('admin')->check())
-    <form action="{{ route('admin.categories.store') }}" id="add-category" method="POST">
+    <form action="{{ route('categories.store') }}" id="add-category" method="POST">
         <input type="text" name="name" class="form-control" placeholder="Add a new category...">
         <button class="btn add icon category">
-            <img src="{{ icon('add', 'svg') }}" class="svg">
+            <i class="typcn typcn-plus"></i>
         </button>
     </form>
     @endif
@@ -13,15 +13,16 @@
             <a class="sidebar-category-{{ $category->id }}" href="{{ route('categories.show', $category) }}">
                 {{ $category->name }} 
             </a> 
+            <span class="posts-count"> {{ $category->posts_count }} </span>
             @if(auth()->guard('admin')->check())
             <div class="actions">
                 <button class="btn edit icon category" 
-                    action="{{ route('admin.categories.update', $category) }}">
-                    <img src="{{ icon('edit', 'svg') }}" alt="" class="svg">
+                    action="{{ route('categories.update', $category) }}">
+                    <i class="typcn typcn-edit"></i>                    
                 </button>
                 <button class="btn delete icon category" 
-                    action="{{ route('admin.categories.destroy', $category) }}">
-                    <img src="{{ icon('delete', 'svg') }}" class="svg">
+                    action="{{ route('categories.destroy', $category) }}">
+                    <i class="typcn typcn-trash"></i>
                 </button>
             </div>
             @endif
@@ -33,13 +34,14 @@
 
 <script id="category-template" type="x-tmpl-mustache">
    <li>
-        <a class="@{{ class }}" href="@{{ showRoute }}"> @{{ name }} </a> 
+       <a class="@{{ class }}" href="@{{ showRoute }}"> @{{ name }} </a> 
+       <span class="posts-count"> 0 </span>
         <div class="actions">
             <button class="btn edit icon category" action="@{{ actionsRoute }}">
-                <img src="{{ icon('edit', 'svg') }}" alt="" class="svg">
+                <i class="typcn typcn-edit"></i>
             </button>
             <button class="btn delete icon category" action="@{{ actionsRoute }}">
-                <img src="{{ icon('delete', 'svg') }}" class="svg">
+                <i class="typcn typcn-trash"></i>                
             </button>
         </div>
     </li>

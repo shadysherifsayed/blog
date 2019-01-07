@@ -15,8 +15,18 @@
         <input type="password" placeholder="Password" name="password" class="form-control" />
     </div>
 
+    
+    <div class="form-group ml-3">
+        <div class="pretty p-icon p-round p-smooth p-plain">
+            <input type="checkbox" name="remember" value="1" />
+            <div class="state p-warning-o">
+                <i class="icon typcn typcn-input-checked"></i>
+                <label class="text-white"> REMEMBER ME </label>
+            </div>
+        </div>
+    </div>
+
     <button type="submit" class="btn ">
-        <img src="{{ icon('login', 'svg') }}" class="svg" />
         <span>SIGN IN</span>
     </button>
 

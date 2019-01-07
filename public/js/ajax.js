@@ -45,6 +45,10 @@ function displayErrors(errors) {
 
         let input = $(`[name="${error}"]`);
 
+        if (input.length == 0) {
+            input = $(`[name="${error}[]"]`);
+        }
+
         let type = input.attr('type');
 
         if (type === 'hidden' && !input.hasClass('show')) continue;
@@ -52,21 +56,16 @@ function displayErrors(errors) {
         let small = `<small class='text-danger feedback' id="${id}"> ${errors[error]} </small>`;
 
         if (type === 'checkbox' || type === 'radio') {
-
             let parent = $(`[parent=${error}]`) || input.parents('.form-group');;
-
             parent.append(small);
         }
         else if (input.parent().hasClass('input-group')) {
-
             input.parent().after(small);
-
         } else if (input.next().hasClass('note-editor')) {
-
             input.next('.note-editor').after(small);
-        }
-        else {
-
+        } else if (input.next().hasClass('tail-select')) {
+            input.next().find('.select-dropdown').before(small);
+        } else {
             input.after(small);
         }
 
@@ -178,3 +177,4 @@ const defaultError = function (response) {
     }
 }
 
+const exists = selector =>  $(selector).length > 0;

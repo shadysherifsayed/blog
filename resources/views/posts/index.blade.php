@@ -3,15 +3,17 @@
 
 @section('content')
 <section class="content">
-    <a href="{{ route('admin.posts.create') }}" class="btn" id="new-post"> 
-        <img src="{{ icon('add', 'svg') }}" class="svg">
+    @if(auth()->guard('admin')->check())    
+    <a href="{{ route('posts.create') }}" class="btn" id="new-post"> 
+        <i class="typcn typcn-plus"></i>
         <span>Add a new post</span>
     </a>
+    @endif
     @if($posts->isEmpty())
     <div class="no-posts shadow">
         <h1> No posts yet</h1>
     </div>
-    @else 
+    @else
     @foreach ($posts as $post)
     <div class="post shadow post-{{ $post->id }}">
         <div class="post-info">
@@ -29,12 +31,16 @@
             <div class="date"> {{ $post->created_at }} </div>
             @if(auth()->guard('admin')->check())
             <div class="actions">
-                <a class="btn edit icon" href="{{ route('admin.posts.edit', $post) }}">
-                    <img src="{{ icon('edit', 'svg') }}" alt="" class="svg">
+                <a class="btn edit icon" href="{{ route('posts.edit', $post) }}">
+                    <i class="typcn typcn-edit"></i>
                 </a>
-                <button class="btn delete icon" action="{{ route('admin.posts.destroy', $post) }}">
-                    <img src="{{ icon('delete', 'svg') }}" class="svg">
-                </button>
+                <form action="{{ route('posts.destroy', $post) }}" class="form-inline p-0" method="POST">
+                    {{ csrf_field() }}
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button class="btn delete icon">
+                        <i class="typcn typcn-trash"></i>
+                    </button>
+                </form>
             </div>
             @endif
         </div>

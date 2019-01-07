@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Classes\TextEditor;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\PostRequest;
 use App\Post;
 use Illuminate\Http\Request;
-use App\Http\Requests\PostRequest;
-use App\Http\Controllers\Controller;
 
 class PostController extends Controller
 {
@@ -17,9 +18,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        $post = New Post;
+        $post = new Post;
 
-        return view('posts.create', compact('post'));        
+        return view('posts.create', compact('post'));
     }
 
     /**
@@ -30,9 +31,16 @@ class PostController extends Controller
      */
     public function store(PostRequest $request)
     {
-        $post = Post::create($request->only('title', 'description', 'content'));
 
-        return api(['redirect' => route('posts.show', $post)]);
+        $post = Post::make($request->only('title', 'description'));
+
+        $post->content = TextEditor::create($request->content, 'images/posts');
+
+        $post->save();
+
+        $post->categories()->attach($request->categories);
+
+        return redirect(route('posts.show', $post));
     }
 
     /**
@@ -43,7 +51,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('posts.edit', compact('post')); 
+        return view('posts.edit', compact('post'));
     }
 
     /**
@@ -55,10 +63,48 @@ class PostController extends Controller
      */
     public function update(PostRequest $request, Post $post)
     {
-        $post->update($request->only('title', 'description', 'content'));
 
-        dd(request()->all());
-        return api(['redirect' => route('posts.show', $post)]);
+        $newCategories = collect($request->categories);
+
+        $currentCategories = $post->categories()->select('categories.id')->get();
+
+        // If post has categories, pluck their IDs
+        if ($currentCategories->isNotEmpty()) {
+            $currentCategories = $currentCategories->pluck('id');
+        } else {
+            $currentCategories = collect();
+        }
+
+        /**
+         * @example
+         * new ['2', '4', '10']
+         * current ['4', '8']
+         * @result
+         * addedCategories ['2', '10']
+         * removedCategories ['8']
+         */
+
+        $addedCategories = $newCategories->diff($currentCategories);
+
+        $removedCategories = $currentCategories->diff($newCategories);
+
+        $post->title = $request->title;
+
+        $post->description = $request->description;
+
+        $post->content = TextEditor::create($request->content, 'images/posts');
+
+        $post->save();
+
+        if ($addedCategories->isNotEmpty()) {
+            $post->categories()->attach($addedCategories);
+        }
+
+        if ($removedCategories->isNotEmpty()) {
+            $post->categories()->detach($removedCategories);
+        }
+
+        return redirect(route('posts.show', $post));
     }
 
     /**
@@ -70,5 +116,7 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         $post->delete();
+
+        return redirect()->route('posts.index');
     }
 }

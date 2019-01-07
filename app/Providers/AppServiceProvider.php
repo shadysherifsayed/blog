@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
+use App\Category;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -14,17 +16,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        
-        View::share('categories', \App\Category::all());
 
-        if(auth()->guard('admin')->check()) {
-            $authUser = auth()->guard('admin')->user();
-        } elseif(auth()->check()) {
-            $authUser = auth()->user();
-        } else {
-            $authUser = null;
+        if (!App::environment('testing')) {
+
+            $categories = Category::withCount('posts')->orderBy('posts_count', 'desc')->get();
+            
+            View::share('categories', $categories);
         }
-        View::share('authUser', $authUser);
+
+
 
     }
 

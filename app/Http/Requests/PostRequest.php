@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class PostRequest extends FormRequest
 {
@@ -27,7 +27,8 @@ class PostRequest extends FormRequest
         return [
             'title' => 'required',
             'description' => 'required',
-            'content' => 'required'
+            'content' => 'required',
         ];
     }
+
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CategoryRequest;
 
 class CategoryController extends Controller
 {
@@ -15,13 +16,13 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
 
         $category = Category::create($request->only('name'));
 
         // Use those routes to append it from JS and use them
-        $category->actions = route('admin.categories.update', $category);
+        $category->actions = route('categories.update', $category);
         $category->show = route('categories.show', $category);
 
         return api(compact('category', 'route'));
@@ -36,12 +37,14 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(CategoryRequest $request, Category $category)
     {
 
         $category->update($request->only('name'));
 
-        return api(['id' => $category->id]);
+        return api([
+            'id' => $category->id,
+        ]);
     }
 
     /**
@@ -60,7 +63,8 @@ class CategoryController extends Controller
          * the response as json more easier
          */
 
-        return api(['id' => $category->id]);
-
+        return api([
+            'id' => $category->id,
+        ]);
     }
 }

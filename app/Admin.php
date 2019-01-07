@@ -19,7 +19,7 @@ class Admin extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'username', 'avatar'
     ];
 
     /**
@@ -31,16 +31,6 @@ class Admin extends Authenticatable
         'password', 'remember_token',
     ];
 
-    /**
-     * Send the password reset notification.
-     *
-     * @param  string  $token
-     * @return void
-     */
-    public function sendPasswordResetNotification($token)
-    {
-        $this->notify(new AdminResetPassword($token));
-    }
 
     /** Accessors */
     public function getAvatarAttribute($avatar)

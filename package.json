@@ -23,12 +23,11 @@
         "animate.css": "^3.7.0",
         "autosize": "^4.0.2",
         "codemirror": "^5.42.0",
-        "hover.css": "^2.3.2",
         "mustache": "^3.0.1",
         "pretty-checkbox": "^3.0.3",
         "summernote": "^0.8.11",
         "sweetalert": "^2.1.2",
-        "toastr": "^2.1.4",
+        "tail.select": "^0.5.5",
         "typicons.font": "^2.0.9"
     }
 }

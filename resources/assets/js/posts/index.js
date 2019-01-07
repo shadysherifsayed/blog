@@ -1,28 +1,6 @@
 const Swal = require('sweetalert');
 const Mustache = require('mustache');
 
-const convertImgToSvg = $img => {
-    // Get all the attributes.
-    var attributes = $img.prop("attributes");
-    // Get the image's URL.
-    var imgURL = $img.attr("src");
-    // Fire an AJAX GET request to the URL.
-    $.get(imgURL, function (data) {
-        // The data you get includes the document type definition, which we don't need.
-        // We are only interested in the <svg> tag inside that.
-        var $svg = $(data).find('svg');
-        // Remove any invalid XML tags as per http://validator.w3.org
-        $svg = $svg.removeAttr('xmlns:a');
-        // Loop through original image's attributes and apply on SVG
-        $.each(attributes, function () {
-            $svg.attr(this.name, this.value);
-        });
-        // Replace image with new SVG
-        $img.replaceWith($svg);
-    });
-
-}
-
 // Delete category
 $(document).on('click', '.delete.category', function () {
     let $this = $(this);
@@ -60,6 +38,8 @@ $(document).on('click', '.edit.category', function () {
                 name: 'name'
             }
         },
+        title: 'Edit a Category',
+        className: "info"
     }).then(input => {
         let name = input.length == 0 ? categoryName : input;
         axios.put(action, {
@@ -68,6 +48,14 @@ $(document).on('click', '.edit.category', function () {
             .then(response => {
                 $(`.posts-category-${response.data.id}`).text(name);
                 $(`.sidebar-category-${response.data.id}`).text(name);
+            }).catch(error => {
+                let data = error.response.data;
+                if (data.errors) {
+                    Swal({
+                        icon: 'error',
+                        text: data.errors.name[0]
+                    });
+                }
             });
 
     });
@@ -93,9 +81,16 @@ $(document).on('submit', '#add-category', function (e) {
             });
             $('.sidebar .categories').append(rendered);
             $this.find('input').val(null);
-            $(`aside .categories`).find('img').each(function () {
-                convertImgToSvg($(this));
-            });
+        })
+        .catch(error => {
+            let data = error.response.data;
+            if (data.errors) {
+                Swal({
+                    icon: 'error',
+                    text: data.errors.name[0],
+                    buttons: false
+                });
+            }
         });
     
 });

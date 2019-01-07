@@ -17,14 +17,6 @@ class PostController extends Controller
     {
         $posts = Post::all();
 
-        if(auth()->guard('admin')->check()) {
-            $authUser = auth()->guard('admin')->user();
-        } elseif(auth()->check()) {
-            $authUser = auth()->user();
-        } else {
-            $authUser = null;
-        }
-
         return view('posts.index', compact('posts'));
     }
 
@@ -36,22 +28,6 @@ class PostController extends Controller
     public function show(Post $post)
     {
         return view('posts.show', compact('post'));
-    }
-
-    /**
-     * Toggle like for specified resource
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function toggleLike(Post $post)
-    {
-        $post->toggleLike;
-
-        $liked = $post->liked;
-        
-        $likesCount = $post->likes_count;
-
-        return api(compact('liked', 'likesCount'));
     }
 
 }

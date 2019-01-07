@@ -1,0 +1,175 @@
+/*!
+ *
+ * Color Me SASS v1.0
+ * Built and Designed by Richard Bray
+ *
+ */
+
+/*!
+ *
+ * Color Me SASS v1.0
+ * Built and Designed by Richard Bray
+ *
+ */
+
+form {
+  background: #40434A;
+  padding: 1rem;
+}
+
+form label {
+  color: #ddd;
+  font-size: 1rem;
+}
+
+form input,
+form textarea {
+  background: transparent;
+  border: 1px solid #ddd;
+  color: #fff;
+}
+
+form input::-webkit-input-placeholder,
+form textarea::-webkit-input-placeholder {
+  color: #aaa;
+}
+
+form input::-ms-input-placeholder,
+form textarea::-ms-input-placeholder {
+  color: #aaa;
+}
+
+form input::placeholder,
+form textarea::placeholder {
+  color: #aaa;
+}
+
+form .tail-select {
+  display: block;
+  width: 100%;
+}
+
+form .tail-select * {
+  color: #fff;
+}
+
+form .tail-select .select-label {
+  background: transparent;
+  border: 1px solid #ddd;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+form .tail-select .select-label:before,
+form .tail-select .select-label:after {
+  content: unset;
+}
+
+form .tail-select .select-dropdown {
+  background: #40434A;
+  z-index: 1000;
+  margin-top: 5px;
+}
+
+form .tail-select .select-dropdown:after,
+form .tail-select .select-dropdown:before {
+  content: unset;
+}
+
+form .tail-select .select-dropdown .dropdown-search input {
+  color: #ddd;
+}
+
+form .tail-select .select-dropdown .dropdown-option:hover:hover {
+  color: #40434A;
+}
+
+form .tail-select.active .select-label:after {
+  background-color: transparent;
+  border-color: transparent;
+}
+
+form .note-editor {
+  border-color: #ddd;
+}
+
+form .note-editor .note-toolbar button {
+  color: #fff;
+}
+
+form .note-editor .note-toolbar .dropdown-menu {
+  background: #40434A;
+}
+
+form .note-editor .note-toolbar .dropdown-style {
+  width: 175px;
+}
+
+form .note-editor .note-toolbar .dropdown-style li,
+form .note-editor .note-toolbar .note-fontsize li {
+  border-bottom: 1px solid #ddd;
+  padding: 0.5rem 1rem;
+}
+
+form .note-editor .note-toolbar .dropdown-style li a,
+form .note-editor .note-toolbar .dropdown-style li pre,
+form .note-editor .note-toolbar .note-fontsize li a,
+form .note-editor .note-toolbar .note-fontsize li pre {
+  color: #ddd;
+  text-decoration: none;
+}
+
+form .note-editor .modal * {
+  color: #222 !important;
+}
+
+form .note-editor .modal .close {
+  margin: 0;
+  padding: 0;
+}
+
+form .note-editor .modal label {
+  display: block;
+}
+
+form .note-editor .note-editing-area {
+  border-top: 1px solid #ddd;
+}
+
+form .note-editor .note-editing-area .note-placeholder {
+  color: #ddd;
+}
+
+form .note-editor .note-editing-area .note-editable {
+  background: transparent;
+  color: #fff;
+}
+
+form .note-editor .note-editing-area .note-editable * {
+  color: #fff;
+}
+
+form .note-editor .note-statusbar {
+  background: transparent;
+}
+
+form button[type="submit"] {
+  background: transparent;
+  border: 1px solid #ddd;
+  border-radius: 3rem;
+  margin: 2rem auto 0;
+  display: block;
+  width: 150px;
+}
+
+form button[type="submit"] span {
+  color: #ddd;
+}
+
+form button[type="submit"] i {
+  color: #ddd;
+  font-size: 22px;
+  margin: 0 0.5rem;
+}
+

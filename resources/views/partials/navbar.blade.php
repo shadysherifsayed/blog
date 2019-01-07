@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md" id="main-navbar">
+<nav class="navbar navbar-expand" id="main-navbar">
 
     <a class="navbar-brand" href="{{ url('/') }}">
         <img src="{{ img('logo') }}" />
@@ -30,10 +30,10 @@
 
             <li class="nav-item">
                 <a id="logout" class="nav-link">
-                    <form action="{{ auth()->guard('admin')->check() ? route('admin.logout') : route('logout') }}" method="POST">
+                    <form action="{{ auth()->guard('admin')->check() ? route('logout') : route('logout') }}" method="POST">
                         {{ csrf_field() }}
                         <button class="icon btn">
-                            <img src="{{ icon('off', 'svg') }}" class="svg">
+                            <i class="typcn typcn-power"></i>
                         </button>
                     </form>
                 </a>
@@ -42,13 +42,11 @@
             @else
             <li class="nav-item">
                 <a href="{{ route('login') }}" class="nav-link">
-                    <img src="{{ icon('login', 'svg') }}" class="svg">
                     <span>Login</span>
                 </a>
             </li>
              <li class="nav-item">
                 <a href="{{ route('register') }}" class="nav-link">
-                    <img src="{{ icon('register', 'svg') }}" class="svg">
                     <span>Register</span>
                 </a>
             </li>

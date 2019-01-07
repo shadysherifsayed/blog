@@ -31,14 +31,11 @@
     </div>
 
     <div id="file-input" class="form-group">
-        <label for="avatar">
-            Choose a Profile Picture
-        </label>
+        <label for="avatar"> Choose a Profile Picture </label>
         <input type="file" name="avatar" id="avatar" accept="image/*">
     </div>
     
     <button type="submit" class="btn ">
-        <img src="{{ icon('login', 'svg') }}" class="svg" />
         <span>REGISTER</span>
     </button>
 </form>

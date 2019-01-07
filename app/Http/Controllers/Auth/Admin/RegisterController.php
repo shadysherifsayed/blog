@@ -50,7 +50,9 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:admins',
-            'password' => 'required|min:6|confirmed',
+            'username' => 'required|string|max:255|unique:admins',
+            'password' => 'required|string|min:6|confirmed',
+            'avatar' => 'nullable|image'
         ]);
     }
 
@@ -62,11 +64,22 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return Admin::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
+        $data = (object)$data;
+
+        $admin = Admin::make([
+            'name' => $data->name,
+            'email' => $data->email,
+            'username' => $data->username,
+            'password' => bcrypt($data->password),
         ]);
+
+        if (isset($data->avatar)) {
+            $admin->avatar = $data->avatar->storeAs('images/avatars', "$data->username.jpg", 'public');
+        }
+
+        $admin->save();
+
+        return $admin;
     }
 
     /**

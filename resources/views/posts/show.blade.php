@@ -13,18 +13,22 @@
                 @endforeach
             </div>
             <h5 class="description"> {{ $post->description }} </h5>
-            <p> {!! $post->content !!} </p>
+            <div class="content"> {!! $post->content !!} </div>
         </div>
         <div class="post-meta">
             <div class="date"> {{ $post->created_at }} </div>
             @if(auth()->guard('admin')->check())
             <div class="actions">
-                <a class="btn edit icon" href="{{ route('admin.posts.edit', $post) }}">
-                    <img src="{{ icon('edit', 'svg') }}" alt="" class="svg">
+                <a class="btn edit icon" href="{{ route('posts.edit', $post) }}">
+                    <i class="typcn typcn-edit"></i>
                 </a>
-                <button class="btn delete icon" action="{{ route('admin.posts.destroy', $post) }}">
-                    <img src="{{ icon('delete', 'svg') }}" class="svg">
-                </button>
+                <form action="{{ route('posts.destroy', $post) }}" class="form-inline p-0" method="POST">
+                    {{ csrf_field() }}
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button class="btn delete icon">
+                        <i class="typcn typcn-trash"></i>
+                    </button>
+                </form>
             </div>
             @endif
         </div>

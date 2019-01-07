@@ -26,7 +26,7 @@
 
     @stack('js')
     @if ($errors->any())
-    <script> displayErrors(@json($errors->all())) </script>
+    <script> displayErrors(@json($errors->messages())) </script>
     @endif
   
 </body>

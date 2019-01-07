@@ -44,8 +44,12 @@
                         <a href="{{ url('register') }}"> REGISTER </a>
                         @elseif(Route::currentRouteName() == 'admin.login')
                         <span> SIGN IN </span>
+                        <a href="{{ url('admin/register') }}"> REGISTER </a>
                         @elseif(Route::currentRouteName() == 'register')
                         <a href="{{ url('login') }}"> SIGN IN </a>
+                        <span> REGISTER </span>
+                        @elseif(Route::currentRouteName() == 'admin.register')
+                        <a href="{{ url('admin/login') }}"> SIGN IN </a>
                         <span> REGISTER </span>
                         @else
                         <a href="{{ url('login') }}"> SIGN IN </a>
@@ -55,9 +59,6 @@
                 </div>
 
                 <div class="right">
-                    {{-- <div class="form-header">
-                        <h3> <span> welcome to </span> mumm blog </h3>
-                    </div> --}}
                     @yield('form')
                 </div>
             </div>

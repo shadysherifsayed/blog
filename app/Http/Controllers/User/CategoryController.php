@@ -8,12 +8,12 @@ use App\Category;
 class CategoryController extends Controller
 {
     /**
-     * Display the specified resource.
+     * Show all posts for a category
      *
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function index(Category $category)
+    public function show(Category $category)
     {
         $posts = $category->posts;
 

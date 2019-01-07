@@ -2,14 +2,14 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
-use Cviebrock\EloquentSluggable\Sluggable;
 use Carbon\Carbon;
+use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
     use Sluggable;
-        
+
     protected $guarded = [];
 
     protected $with = ['categories'];
@@ -21,13 +21,26 @@ class Post extends Model
     }
     /** Relations */
 
-
     /** Accessors */
     public function getCreatedAtAttribute($date)
     {
         return Carbon::parse($date)->toDateString();
     }
+
+    public function getContentAttribute($content)
+    {
+        return htmlspecialchars_decode($content);
+    }
     /** Accessors */
+
+    /** Route Model Key */
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+    /** Route Model Key */
+
+    
     /**
      * Return the sluggable configuration array for this model.
      *
@@ -37,8 +50,8 @@ class Post extends Model
     {
         return [
             'slug' => [
-                'source' => 'title'
-            ]
+                'source' => 'title',
+            ],
         ];
     }
 }

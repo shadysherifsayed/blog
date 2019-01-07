@@ -87,7 +87,7 @@ class LoginController extends Controller
      */
     function logoutToPath()
     {
-        return route('admin.login');
+        return url('/');
     }
 
     /**

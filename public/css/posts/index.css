@@ -12,12 +12,20 @@
  *
  */
 
+.note-popover {
+  display: none;
+}
+
 .main {
   width: 98%;
   display: grid;
-  grid-template-columns: 300px auto;
+  grid-template-columns: 350px auto;
   grid-gap: 1rem;
   margin: 2rem auto;
+}
+
+.main * {
+  word-break: break-word;
 }
 
 @media screen and (max-width: 768px) {
@@ -37,6 +45,17 @@
   display: flex;
   border: 1px solid #ddd;
   margin: 1rem 0;
+}
+
+.main .sidebar #add-category i {
+  font-size: 1.3rem;
+  color: #ddd;
+  -webkit-transition: 0.5s all;
+  transition: 0.5s all;
+}
+
+.main .sidebar #add-category i:hover {
+  color: #F4B400;
 }
 
 .main .sidebar #add-category input {
@@ -89,14 +108,15 @@
 }
 
 .main .sidebar ul li {
-  padding: 0.7rem;
+  padding: 0 0.7rem;
   position: relative;
   border-bottom: 1px solid #383A3F;
   display: grid;
-  grid-template-columns: auto 80px;
+  grid-template-columns: auto 40px 80px;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  min-height: 50px;
 }
 
 .main .sidebar ul li:before {
@@ -114,6 +134,24 @@
 .main .sidebar ul li.active:before,
 .main .sidebar ul li:hover:before {
   height: 100%;
+}
+
+.main .sidebar ul li span {
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+  background: #383A3F;
+  color: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-size: 0.8rem;
 }
 
 .main .sidebar ul li a {
@@ -200,10 +238,25 @@
   line-height: 1.8;
 }
 
-.main .content .post .post-info p {
+.main .content .post .post-info .content {
   border-top: 1px solid #383A3F;
-  padding: 1rem 0;
+  padding-top: 1rem;
   color: #ddd;
+}
+
+.main .content .post .post-info .content * {
+  color: #ddd;
+}
+
+.main .content .post .post-info .content img {
+  width: unset;
+  max-width: 90% !important;
+}
+
+@media screen and (max-width: 768px) {
+  .main .content .post .post-info .content iframe {
+    width: 90% !important;
+  }
 }
 
 .main .content .post .post-meta {
@@ -282,12 +335,100 @@
           box-shadow: none;
 }
 
+.main .content form .tail-select .select-label:before,
+.main .content form .tail-select .select-label:after {
+  content: unset;
+}
+
+.main .content form .tail-select .select-dropdown {
+  background: #40434A;
+  z-index: 1000;
+  margin-top: 5px;
+}
+
+.main .content form .tail-select .select-dropdown:after,
+.main .content form .tail-select .select-dropdown:before {
+  content: unset;
+}
+
+.main .content form .tail-select .select-dropdown .dropdown-search input {
+  color: #ddd;
+}
+
+.main .content form .tail-select .select-dropdown .dropdown-option:hover:hover {
+  color: #40434A;
+}
+
 .main .content form .tail-select.active .select-label:after {
   background-color: transparent;
   border-color: transparent;
 }
 
-.main .content form button {
+.main .content form .note-editor {
+  border-color: #ddd;
+}
+
+.main .content form .note-editor .note-toolbar button {
+  color: #fff;
+}
+
+.main .content form .note-editor .note-toolbar .dropdown-menu {
+  background: #40434A;
+}
+
+.main .content form .note-editor .note-toolbar .dropdown-style {
+  width: 175px;
+}
+
+.main .content form .note-editor .note-toolbar .dropdown-style li,
+.main .content form .note-editor .note-toolbar .note-fontsize li {
+  border-bottom: 1px solid #ddd;
+  padding: 0.5rem 1rem;
+}
+
+.main .content form .note-editor .note-toolbar .dropdown-style li a,
+.main .content form .note-editor .note-toolbar .dropdown-style li pre,
+.main .content form .note-editor .note-toolbar .note-fontsize li a,
+.main .content form .note-editor .note-toolbar .note-fontsize li pre {
+  color: #ddd;
+  text-decoration: none;
+}
+
+.main .content form .note-editor .modal * {
+  color: #222 !important;
+}
+
+.main .content form .note-editor .modal .close {
+  margin: 0;
+  padding: 0;
+}
+
+.main .content form .note-editor .modal label {
+  display: block;
+}
+
+.main .content form .note-editor .note-editing-area {
+  border-top: 1px solid #ddd;
+}
+
+.main .content form .note-editor .note-editing-area .note-placeholder {
+  color: #ddd;
+}
+
+.main .content form .note-editor .note-editing-area .note-editable {
+  background: transparent;
+  color: #fff;
+}
+
+.main .content form .note-editor .note-editing-area .note-editable * {
+  color: #fff;
+}
+
+.main .content form .note-editor .note-statusbar {
+  background: transparent;
+}
+
+.main .content form button[type="submit"] {
   background: transparent;
   border: 1px solid #ddd;
   border-radius: 3rem;
@@ -296,15 +437,13 @@
   width: 150px;
 }
 
-.main .content form button span {
+.main .content form button[type="submit"] span {
   color: #ddd;
 }
 
-.main .content form button svg {
-  fill: #ddd;
-  width: 22px;
-  height: 22px;
-  margin: 0 0.5rem;
+.main .content form button[type="submit"] i {
+  color: #ddd;
+  font-size: 22px;
 }
 
 .main .actions {
@@ -325,20 +464,19 @@
   margin: 0 0.3rem;
 }
 
-.main .actions .btn svg {
-  width: 25px;
-  height: 25px;
-  fill: #ddd;
+.main .actions .btn i {
+  font-size: 1.5rem;
+  color: #ddd;
   -webkit-transition: 0.5s all;
   transition: 0.5s all;
 }
 
-.main .actions .btn.delete:hover svg {
-  fill: #e9605c;
+.main .actions .btn.delete:hover i {
+  color: #e9605c;
 }
 
-.main .actions .btn.edit:hover svg {
-  fill: #4285F4;
+.main .actions .btn.edit:hover i {
+  color: #4285F4;
 }
 
 .swal-overlay {
@@ -348,6 +486,10 @@
 .swal-overlay .swal-modal {
   background: #383A3F;
   border-radius: 1rem;
+}
+
+.swal-overlay .swal-modal.info .swal-title {
+  color: #4285F4 !important;
 }
 
 .swal-overlay .swal-modal .swal-title {
@@ -398,19 +540,19 @@
   background: #38c172;
 }
 
-.swal-overlay .swal-modal .swal-footer .swal-button--danger {
-  border: 1px solid #e3342f;
-}
-
-.swal-overlay .swal-modal .swal-footer .swal-button--danger:hover {
-  background: #e3342f;
-}
-
 .swal-overlay .swal-modal .swal-footer .swal-button--confirm {
   border: 1px solid #4285F4;
 }
 
 .swal-overlay .swal-modal .swal-footer .swal-button--confirm:hover {
   background: #4285F4;
+}
+
+.swal-overlay .swal-modal .swal-footer .swal-button--danger {
+  border: 1px solid #e3342f;
+}
+
+.swal-overlay .swal-modal .swal-footer .swal-button--danger:hover {
+  background: #e3342f;
 }
 
