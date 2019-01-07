@@ -34,7 +34,7 @@ class UserLoginTest extends TestCase
 
         $this->userLogin();
 
-        $this->post('logout')
+        $this->post('/logout')
             ->assertRedirect('/');
     }
 

@@ -36,7 +36,7 @@ Route::namespace ('Auth\Admin')
         Route::post('/register', 'RegisterController@register');
     });
 
-Route::middleware(['web', 'admin', 'auth:admin'])
+Route::middleware(['web', 'auth:admin'])
     ->namespace('Admin')
     ->group(function () {
         Route::resource('posts', 'PostController')->except('index', 'show');

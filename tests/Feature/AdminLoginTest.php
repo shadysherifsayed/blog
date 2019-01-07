@@ -40,6 +40,16 @@ class AdminLoginTest extends TestCase
 
     }
 
+     /** @test */
+    public function user_can_logout()
+    {
+
+        $this->userLogin();
+
+        $this->post('/logout')
+            ->assertRedirect('/');
+    }
+
     /** @test */
     public function admin_cannot_login_if_username_is_wrong()
     {

@@ -7,6 +7,7 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
+// All Tests Work Perfectly
 class AdminRegistrationTest extends TestCase
 {
 

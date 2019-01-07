@@ -28,18 +28,20 @@ class CategoryRequest extends FormRequest
 
         if($this->isMethod('put')) {
             $category = $this->route('category');
-            return [
+            $rules = [
                 'name' => [
                     'required',
                     Rule::unique('categories')->ignore($category->id)
                 ]
             ];
         } elseif($this->isMethod('post')) {
-            return [
+            $rules = [
                 'name' => ['required',
                     Rule::unique('categories')
                 ]
             ];
         }
+
+        return $rules;
     }
 }

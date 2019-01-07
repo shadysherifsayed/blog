@@ -6,6 +6,7 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
+// All Tests Work Perfectly
 class HelperFunctionsTest extends TestCase
 {
     

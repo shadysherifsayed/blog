@@ -6,6 +6,7 @@ use Tests\TestCase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
+// All Tests Work Perfectly
 class UserRegistrationTest extends TestCase
 {
 
