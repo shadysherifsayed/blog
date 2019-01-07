@@ -25,7 +25,6 @@ class DatabaseSeeder extends Seeder
             'username' => 'shady',
             'email' => 'shady@user.com',
             'password' => bcrypt('123456'),
-            'avatar' => 'images/avatars/shadysherif.jpg'
         ]);
 
         // Admin Seeder
@@ -34,7 +33,6 @@ class DatabaseSeeder extends Seeder
             'username' => 'admin',
             'email' => 'super@admin.com',
             'password' => bcrypt('123456'),
-            'avatar' => 'images/avatars/shadysherif.jpg'
         ]);
 
         // $this->call(UsersTableSeeder::class);

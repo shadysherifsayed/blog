@@ -17,8 +17,6 @@
     {!! css('app') !!}
     {!! css('auth') !!}
 
-    @stack('css')
-
 
 </head>
 
@@ -26,9 +24,7 @@
 
     <div id="wrapper">
         <div class="images">
-            @for ($i = 1; $i <= 1; $i++)
-                <div style='background-image: url({{ img("login/$i", 'jpg') }})'></div>
-            @endfor
+            <div style='background-image: url({{ img("login/1", 'jpg') }})'></div>
         </div>
         <div class="overlay"></div>
         <div class="body">
@@ -70,10 +66,10 @@
 
     {!! js('app') !!}
     {!! js('ajax') !!}
-    <script>
-        displayErrors(@json($errors->messages()))
-    </script>
-    @stack('scripts')
+
+    @if ($errors->any())
+    <script> displayErrors(@json($errors->messages())) </script>
+    @endif
 
 </body>
 

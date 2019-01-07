@@ -1,53 +1,91 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+# Blog App
+### Prerequisites
+* [Composer](https://getcomposer.org/download/ "Download Composer")
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+-----------------------------------------------------------------------------------
 
-## About Laravel
+### Installation
+This is a guide that explains how to run this app on your local machine. Kindly, follow the following steps:
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+  1. First step is to install all dependencies needed, use `composer install` command to install all needed dependencies from `composer.json`
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+  2. The main database name is `mumm_blog`, if you want to change it open `.env` file, and modify it with your DB credintials
+ ```sh
+// Change those lines
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=mumm_blog
+DB_USERNAME=root
+DB_PASSWORD=
+ ```
+ 
+ 3. The testing database name is `mumm_blog_testing`, if you want to change it open `phpunit.xml` file, and modify it with your DB credentials
+ ```sh
+ // Change those lines
+ <env name="DB_CONNECTION" value="mysql" />
+<env name="DB_DATABASE" value="mumm_blog_testing" />
+<env name="DB_USERNAME" value="root" />        
+<env name="DB_PASSWORD" value="" />
+ ```
+  4. Setting up your DB connection **and** creating the DB **manually**, simply run this command `php artisan migrate` to migrate tables.
+  
+  
+  5. You may run this command `php artisan storage:link` to create the symbolic link between storage folder and public folder.
+  
+  6. Lastly, you may run `php artisan serve` command. This command will start a development server at `http://localhost:8000`
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb combination of simplicity, elegance, and innovation give you tools you need to build any application with which you are tasked.
+----------------------------------------------------------------------
+### Notes
 
-## Learning Laravel
+###### Database Seeding
 
-Laravel has the most extensive and thorough documentation and video tutorial library of any modern web application framework. The [Laravel documentation](https://laravel.com/docs) is thorough, complete, and makes it a breeze to get started learning the framework.
+I have created a seeder for the database to create dummy data for all application models(Post, Category, User, and Admin),
+simply you could run `php artisan migrate:fresh --seed`, or if you have already `migrated` the tables you could run `php artisan db:seed`, and after that `50 posts`, `10 categories`, `1 admin`, and also `1 user` will be created.
+```
+  // Admin data
+  [
+      'name' => 'Super Admin',
+      'username' => 'admin',
+      'email' => 'super@admin.com',
+      'password' => 123456,
+  ]
+  
+  // User data
+  [
+      'name' => 'Shady Sherif',
+      'username' => 'shady',
+      'email' => 'shady@user.com',
+      'password' => 123456,
+  ]
+```
 
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 900 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
+###### Admin Login
 
-## Laravel Sponsors
+To login as an `admin`, the url will be `APP_URL\admin\login`
 
-We would like to extend our thanks to the following sponsors for helping fund on-going Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](http://patreon.com/taylorotwell):
+----------------------------------------------------------------------
 
-- **[Vehikl](http://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Styde](https://styde.net)**
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
+### Help
 
-## Contributing
+##### Error #1
+While migrating if you encounters this error
+`PDOException::("SQLSTATE[42000]: Syntax error or access violation: 1071 Specified key was too long; max key length is 767 bytes")`
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+_**Solution**_
+Go to `app->Providers->AppServiceProvider.php` and add this line to `boot` method.
+``` sh
+use Illuminate\Support\Facades\Schema;
+public function boot()
+    {
+        Schema::defaultStringLength(191);
+    }
+```
 
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+##### Error #2
+`SQLSTATE[42S01]: Base table or view already exists:`
+_**Solution**_
+Simply run the following commands
+``` sh
+$ php artisan migrate:fresh
+```
