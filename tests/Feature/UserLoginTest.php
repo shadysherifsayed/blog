@@ -38,6 +38,7 @@ class UserLoginTest extends TestCase
             ->assertRedirect('/');
     }
 
+
     /** @test */
     public function user_cannot_login_if_username_is_wrong()
     {

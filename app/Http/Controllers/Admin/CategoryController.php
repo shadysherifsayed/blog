@@ -25,7 +25,7 @@ class CategoryController extends Controller
         $category->actions = route('categories.update', $category);
         $category->show = route('categories.show', $category);
 
-        return api(compact('category', 'route'));
+        return api(compact('category'));
     }
 
 

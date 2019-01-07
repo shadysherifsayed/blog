@@ -80,5 +80,30 @@ class PostUpdateTest extends TestCase
     }
 
     /** @test */
+    public function post_categories_can_be_updated()
+    {
 
+        $this->adminLogin();
+
+        $post = create('App\Post');
+
+        create('App\Category', [], 4);
+
+        $post->categories()->attach([1, 2]);
+
+        // We have to provide all required fields to pass the validation rules
+        $this->put(route('posts.update', $post), [
+            'title' => $post->title,
+            'description' => $post->description,
+            'content' => $post->content,
+            'categories' => [2, 4],
+        ]);
+
+        $postCategoriesIds = $post->categories()->select('categories.id')->get()->pluck('id');
+
+        $this->assertEquals($postCategoriesIds, collect([2, 4]));
+        
+        $this->assertFalse($postCategoriesIds->contains(1));
+
+    }
 }

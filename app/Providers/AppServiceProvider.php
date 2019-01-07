@@ -2,10 +2,9 @@
 
 namespace App\Providers;
 
-use App\Category;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -16,16 +15,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
-        if (!App::environment('testing')) {
-
-            $categories = Category::withCount('posts')->orderBy('posts_count', 'desc')->get();
-            
-            View::share('categories', $categories);
-        }
-
-
-
+        Schema::defaultStringLength(191);
     }
 
     /**

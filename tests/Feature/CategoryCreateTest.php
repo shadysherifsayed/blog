@@ -36,9 +36,15 @@ class CategoryCreateTest extends TestCase
 
         $this->adminLogin();
 
-        $category = create('App\Category')->toArray();
+        $category = make('App\Category')->toArray();
 
-        $this->post(route('categories.store'), $category);
+        $this->post(route('categories.store'), $category)
+            ->assertJson([
+                'category' => [
+                    'id' => 1,
+                    'name' => $category['name']
+                ]
+            ]);
 
         $this->assertDatabaseHas('categories', $category);
     }

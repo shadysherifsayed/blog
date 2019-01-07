@@ -9,6 +9,7 @@ use Tests\TestCase;
 // All Tests Work Perfectly
 class AdminLoginTest extends TestCase
 {
+   
     use DatabaseMigrations;
 
     /** @test */

@@ -49,7 +49,10 @@ class PostCreateTest extends TestCase
     {
         $this->adminLogin();
 
-        $post = make('App\Post');
+        $post = make('App\Post', [
+            "content" => '<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==">
+            <p> Content </p>'
+        ]);
 
         $this->post(route('posts.store'), $post->toArray());
 
@@ -88,4 +91,5 @@ class PostCreateTest extends TestCase
 
         return $this->post(route('posts.store'), $post->toArray());
     }
+
 }
