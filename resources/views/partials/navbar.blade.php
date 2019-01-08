@@ -30,7 +30,7 @@
 
             <li class="nav-item">
                 <a id="logout" class="nav-link">
-                    <form action="{{ auth()->guard('admin')->check() ? route('logout') : route('logout') }}" method="POST">
+                    <form action="{{ auth()->guard('admin')->check() ? route('admin.logout') : route('logout') }}" method="POST">
                         {{ csrf_field() }}
                         <button class="icon btn">
                             <i class="typcn typcn-power"></i>
